@@ -8,7 +8,7 @@ import {
     StyleSheet,
 } from 'react-native';
 // import Spinner from 'react-native-loading-spinner-overlay';
-// import {AuthContext} from '../context/AuthContext';
+import {AuthContext} from '../context/AuthContext';
 
 
 const RegisterScreen = ({navigation}) => {
@@ -17,10 +17,12 @@ const RegisterScreen = ({navigation}) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
+    const val=useContext(AuthContext);
 
     return (
         <View className="flex-1 items-center justify-center">
             <View className="w-[80%]">
+                <Text>{val}</Text>
                 <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={name} placeholder="Enter name" onChangeText={text=>setName(text)}/>
                 <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={email} placeholder="Enter email" onChangeText={text=>setEmail(text)}/>
                 <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={password} placeholder="Enter password" onChangeText={text=>setPassword(text)}/>
