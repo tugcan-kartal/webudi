@@ -17,7 +17,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {userInfo.token 
+        {userInfo.token && userInfo.message === "Giriş Başarılı"
         ? 
           (<Stack.Screen name="Home" component={HomeScreen} />) 
         : 
@@ -26,8 +26,6 @@ const Navigation = () => {
             <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/> 
           </>)
         }
-        
-        
       </Stack.Navigator>
     </NavigationContainer>
   )
