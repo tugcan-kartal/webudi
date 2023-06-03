@@ -37,16 +37,12 @@ export const AuthProvider = ({children}) => {
                   setIsLoading(false);
                 });
                 setIsLoading(false);
+                alert("Kullanıcı Başarıyla Oluşturuldu");
                 console.log(userInfo);
             })
             .catch((error) => {
-                console.log('register error:', error);
-                if (error.response) {
-                    console.log('register error response:', error.response);
-                    console.log('register error data:', error.response.data);
-                } else {
-                    console.log(`register error ${error}`);
-                }
+                alert("Hata: " + error.response.data.message);
+                console.log('register error:', error.response.data);
                 setIsLoading(false);
             });
             
@@ -68,7 +64,9 @@ export const AuthProvider = ({children}) => {
             setUserInfo(userInfo);
             AsyncStorage.setItem('userInfo',JSON.stringify(userInfo));
             setIsLoading(false);
+            alert("Giriş Başarılı");
         }).catch(error=>{
+            alert("Hata: "+error.response.data.message);
             console.log(`login error ${error}`);
             setIsLoading(false);
         });
@@ -86,6 +84,7 @@ export const AuthProvider = ({children}) => {
             setIsLoading(false);
         }   
         );
+        alert("Çıkış Yapıldı");
     };
 
     const isLoggedIn=async()=>{

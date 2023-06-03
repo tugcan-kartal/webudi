@@ -23,13 +23,13 @@ const RegisterScreen = ({navigation}) => {
         <View className="flex-1 items-center justify-center">
             <Spinner visible={isLoading}/>
             <View className="w-[80%]">
-                <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={name} placeholder="Enter name" onChangeText={text=>setName(text)}/>
-                <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={email} placeholder="Enter email" onChangeText={text=>setEmail(text)}/>
-                <TextInput className="mt-[12] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={password} placeholder="Enter password" onChangeText={text=>setPassword(text)}/>
+                <TextInput className="mt-[12] mb-[3%] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={name} placeholder="Enter name" onChangeText={text=>setName(text)}/>
+                <TextInput className="mt-[12] mb-[3%] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={email} placeholder="Enter email" onChangeText={text=>setEmail(text)}/>
+                <TextInput className="mt-[12] mb-[10%] border-[1px] border-[#bbb] rounded-[5px] px-[14px]" value={password} placeholder="Enter password" onChangeText={text=>setPassword(text)}/>
 
-                <Button title="Register" onPress={()=>{register(name,email,password);}}/>
+                <Button className="mb-[5%]" title="Register" onPress={()=>{register(name,email,password);}}/>
 
-                <View className="flex-row mt-[20]">
+                <View className="flex-row gap-x-[25] mt-[20]">
                     <Text>Already have an account?</Text>
                     <TouchableOpacity onPress={()=>{navigation.navigate("Login")}}>
                         <Text className="text-blue-700">Login</Text>
