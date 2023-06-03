@@ -6,16 +6,19 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import { AuthContext } from '../context/AuthContext';
+import SplashScreen from '../screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo,splashLoading } = useContext(AuthContext);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {userInfo.token && userInfo.message === 'Giriş Başarılı' ? (
+        {splashLoading ? (<Stack.Screen name='Splash Screen' component={SplashScreen} options={{headerShown: false}} />)
+        :
+        userInfo.token && userInfo.message === 'Giriş Başarılı' ? (
           <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
           <>
@@ -30,7 +33,9 @@ const Navigation = () => {
               options={{ headerShown: false }}
             />
           </>
-        )}
+        )
+        }
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
