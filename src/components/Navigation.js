@@ -15,17 +15,9 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {userInfo.token && userInfo.message === 'Giriş Başarılı' ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
-        ) : (
-          <>
-            {userInfo.message === 'Kayıt Başarılı' ? (
-              <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-            ) : (
-              <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-            )}
-          </>
-        )}
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
