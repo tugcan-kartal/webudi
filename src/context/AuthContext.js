@@ -49,11 +49,33 @@ export const AuthProvider = ({children}) => {
                 setIsLoading(false);
             });
             
-      };
+    };
       
+    const login=(email,password)=>{
+        setIsLoading(true);
+
+        axios.post(`${BASE_URL}/login`,{
+            email,
+            password
+        },{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }).then(res=>{
+            let userInfo=res.data;
+            console.log(userInfo);
+            setUserInfo(userInfo);
+            AsyncStorage.setItem('userInfo',JSON.stringify(userInfo));
+            setIsLoading(false);
+        }).catch(error=>{
+            console.log(`login error ${error}`);
+            setIsLoading(false);
+        });
+    };
+
 
     return (
-        <AuthContext.Provider value={{isLoading,userInfo,register}}>
+        <AuthContext.Provider value={{isLoading,userInfo,register,login}}>
             {children}
         </AuthContext.Provider>
     )
