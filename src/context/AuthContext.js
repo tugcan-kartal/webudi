@@ -73,9 +73,22 @@ export const AuthProvider = ({children}) => {
         });
     };
 
+    const logout=()=>{
+        setIsLoading(true);
+        AsyncStorage.removeItem('userInfo')
+        .then(()=>{
+            setUserInfo({});
+            setIsLoading(false);
+        }
+        ).catch(error=>{
+            console.log(`logout error ${error}`);
+            setIsLoading(false);
+        }   
+        );
+    };
 
     return (
-        <AuthContext.Provider value={{isLoading,userInfo,register,login}}>
+        <AuthContext.Provider value={{isLoading,userInfo,register,login,logout}}>
             {children}
         </AuthContext.Provider>
     )

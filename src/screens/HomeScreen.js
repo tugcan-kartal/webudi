@@ -5,13 +5,13 @@ import {AuthContext} from "../context/AuthContext";
 
 const HomeScreen = () => {
 
-    const {userInfo,isLoading} = useContext(AuthContext);
+    const {userInfo,isLoading,logout} = useContext(AuthContext);
 
     return (
         <View className="flex-1 items-center justify-center">
             <Spinner visible={isLoading} />
             <Text className="text-lg mb-[8]">Welcome {userInfo.user.name}</Text>
-            <Button title="Logout" color="red" />
+            <Button title="Logout" color="red" onPress={logout}/>
         </View>
     );
 };
