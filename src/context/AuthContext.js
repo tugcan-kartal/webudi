@@ -123,7 +123,6 @@ export const AuthProvider = ({children}) => {
           .then(res => {
             let products = res.data.products.data;
             setProducts(products);
-            console.log(products);
           })
           .catch(error => {
             console.log(`get products error ${error}`);
