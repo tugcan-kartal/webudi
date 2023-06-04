@@ -11,6 +11,8 @@ export const AuthProvider = ({children}) => {
     const [isLoading,setIsLoading] = useState(false);    
     const [splashLoading,setSplashLoading] = useState(false);
 
+    const [products,setProducts] = useState([]);
+
     const register = (name, email, password) => {
         setIsLoading(true);
         axios
@@ -104,13 +106,38 @@ export const AuthProvider = ({children}) => {
             console.log(`is logged in error ${error}`);
         }
     };
-    
-    useEffect(()=>{
-        isLoggedIn();
-    },[]);
+
+    const getProducts = () => {
+        if (!userInfo.token) {
+          console.log('Kullanıcı oturumu yok');
+          return;
+        }
+      
+        axios
+          .get(`${BASE_URL}/products`, {
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${userInfo.token}`,
+            },
+          })
+          .then(res => {
+            let products = res.data.products.data;
+            setProducts(products);
+            console.log(products);
+          })
+          .catch(error => {
+            console.log(`get products error ${error}`);
+          });
+      };
+      
+
+
+    // useEffect(()=>{
+    //     isLoggedIn();
+    // },[]);
 
     return (
-        <AuthContext.Provider value={{isLoading,userInfo,splashLoading,register,login,logout}}>
+        <AuthContext.Provider value={{isLoading,userInfo,products,splashLoading,register,login,logout,getProducts}}>
             {children}
         </AuthContext.Provider>
     )
